@@ -17,7 +17,7 @@ server.get('/', (req, res) => {
 });
 
 server.get('/notes', (req, res) => {
-    db('notes_table_two') // seed
+    db('notes_table_three') // seed
     .then(notes => {
         res.status(200).json(notes);
         console.log(notes);
@@ -28,7 +28,7 @@ server.get('/notes', (req, res) => {
 });
 
 server.get('/notes/:id', (req, res) => {
-    db('notes_table_two')
+    db('notes_table_three')
     .where({ id: req.params.id })
     .first()
     .then(note => {
@@ -45,7 +45,7 @@ server.get('/notes/:id', (req, res) => {
 server.post('/notes/addnote', (req, res) => {
     const note = req.body;
     db.insert(note)
-    .into('notes_table_two')
+    .into('notes_table_three')
     .then(id => {
         res.status(201).json(id);
     })
@@ -57,7 +57,7 @@ server.post('/notes/addnote', (req, res) => {
 server.put('/notes/edit/:id', (req, res) => {
     const { id } = req.params;
     const newNote = req.body;
-    db('notes_table_two')
+    db('notes_table_three')
     .where({ id })
     .update(newNote)
     .then(note => {
@@ -73,7 +73,7 @@ server.put('/notes/edit/:id', (req, res) => {
   });
 
 server.delete('/notes/delete/:id', (req, res) => {
-    db('notes_table_two')
+    db('notes_table_three')
     .where({ id: req.params.id })
     .del()
     .then(note => {
