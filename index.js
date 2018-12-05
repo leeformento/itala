@@ -42,7 +42,7 @@ server.get('/notes/:id', (req, res) => {
         res.status(500).json({ err: 'Sorry, the note with the specified ID could not be retrieved.', err }));
     });
 
-server.post('/notes', (req, res) => {
+server.post('/notes/addnote', (req, res) => {
     const note = req.body;
     db.insert(note)
     .into('notes_table_two')
@@ -54,7 +54,7 @@ server.post('/notes', (req, res) => {
     })
 });
 
-server.put('/notes/:id', (req, res) => {
+server.put('/notes/edit/:id', (req, res) => {
     const { id } = req.params;
     const newNote = req.body;
     db('notes_table_two')
@@ -72,7 +72,7 @@ server.put('/notes/:id', (req, res) => {
       })
   });
 
-server.delete('/notes/:id', (req, res) => {
+server.delete('/notes/delete/:id', (req, res) => {
     db('notes_table_two')
     .where({ id: req.params.id })
     .del()
