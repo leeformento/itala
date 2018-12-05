@@ -89,5 +89,5 @@ server.delete('/notes/:id', (req, res) => {
 
 
 
-const port = 4445;
+const port=process.env.PORT|| 4443;
 server.listen(port, () => console.log(`==== Party at port ${port} ====`));
